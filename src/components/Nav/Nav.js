@@ -5,6 +5,7 @@ import "./nav.css"
 function Nav() {
   return (
     <nav>
+      <h1>Manga Haven</h1>
       <Link to="/">Browse our Products</Link>
       <Link to="/create-book">Add a new book</Link>
     </nav>
