@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createBook } from "../API/Api";
+import "./newbook.css"
 
 function NewBook() {
   let navigate = useNavigate();
   const [book, setBook] = useState({
     series: "",
     volume: "",
+    price: "",
+    author: "",
     genre: "",
     description: "",
   });
@@ -20,23 +23,25 @@ function NewBook() {
   async function handleCreateBook(e) {
     e.preventDefault();
     try {
-        await createBook(book)
-        setBook({
-          series: "",
-          volume: "",
-          genre: "",
-          description: "",
-        });
-        navigate("/")
+      await createBook(book);
+      setBook({
+        series: "",
+        volume: "",
+        price: "",
+        author: "",
+        genre: "",
+        description: "",
+      });
+      navigate("/");
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   }
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleCreateBook}>
         <div>
-          <label>Series</label>
+          <label htmlFor="series">Series</label>
           <input
             required
             type="text"
@@ -47,7 +52,7 @@ function NewBook() {
           />
         </div>
         <div>
-          <label>Volume</label>
+          <label htmlFor="volume">Volume</label>
           <input
             required
             type="text"
@@ -58,7 +63,31 @@ function NewBook() {
           />
         </div>
         <div>
-          <label>Genre</label>
+          <label htmlFor="author">Author</label>
+          <input
+            required
+            type="text"
+            name="author"
+            id="author"
+            onChange={handleOnChange}
+            value={book.author}
+          />
+        </div>
+        <div>
+          <label htmlFor="price">Price</label>
+          <input
+            required
+            type="number"
+            min="1"
+            max="10"
+            name="price"
+            id="price"
+            onChange={handleOnChange}
+            value={book.price}
+          />
+        </div>
+        <div>
+          <label htmlFor="genre">Genre</label>
           <input
             required
             type="text"
@@ -69,17 +98,15 @@ function NewBook() {
           />
         </div>
         <div>
-          <label>Description</label>
-          <input
-            required
-            type="text"
+          <label htmlFor="description">Description</label>
+          <textarea
             name="description"
             id="description"
             onChange={handleOnChange}
             value={book.description}
           />
         </div>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

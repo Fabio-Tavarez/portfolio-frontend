@@ -1,0 +1,27 @@
+/* Products.css */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two items across horizontally */
+  gap: 20px; /* Adjust the gap as needed */
+  list-style: none;
+}
+
+.product-item {
+  text-align: center;
+}
+
+.product-image {
+  max-width: 30%; /* Make the images 40% smaller */
+  height: auto;
+  border: 2px solid #020202;
+  border-radius: 5px;
+}
+
+.product-link {
+  text-decoration: none;
+  color: #21127a;
+}
+
+.product-link:hover {
+  text-decoration: underline;
+}

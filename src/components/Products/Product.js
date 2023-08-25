@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link , useParams, useNavigate } from "react-router-dom";
 import { getBookById } from "../API/Api";
+import "./product.css";
 
 function Product() {
   const { id } = useParams();
@@ -10,7 +10,7 @@ function Product() {
 
   useEffect(() => {
     toFetchBookById();
-  }, []);
+  });
 
   async function toFetchBookById() {
     try {
@@ -21,22 +21,30 @@ function Product() {
       console.log(error);
     }
   }
-
+  function handlePurchase() {
+    alert("Thank you for your purchase");
+    navigate("/");
+  }
   return (
     <>
-      <div>Product</div>
-      <div>
-        <img src={book.image_path} />
-        <p>
-          {book.series} Volume:{book.volume}
-        </p>
-        <p>{book.genre}</p>
-        <p>${book.price}</p>
-        <p>{book.description}</p>
-        <span>
-          <button onClick={() => navigate("/")}>Go Back</button>
-          <Link to={`/books/${id}/edit`}>Edit</Link>
-        </span>
+      <div className="book-details-container">
+        <img src={book.image_path} alt="volume cover" className="book-image" />
+        <div className="book-info">
+          <p>
+            {book.series} Volume: {book.volume}
+          </p>
+          <p>{book.author}</p>
+          <p>{book.genre}</p>
+          <p>${book.price}</p>
+          <p>{book.description}</p>
+          <span className="book-buttons">
+            <button onClick={() => navigate("/")}>Go Back</button>
+            <button onClick={handlePurchase}>Buy</button>
+            <Link to={`/books/${id}/edit`}>
+              <button>Edit</button>
+            </Link>
+          </span>
+        </div>
       </div>
     </>
   );

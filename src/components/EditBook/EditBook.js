@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getBookById, updateBookById } from "../API/Api";
-
+import "./edit.css"
 function EditBook() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -9,12 +9,14 @@ function EditBook() {
   const [book, setBook] = useState({
     series: "",
     volume: "",
+    price: "",
+    author: "",
     genre: "",
     description: "",
   });
   useEffect(() => {
     toFetchBookById();
-  }, []);
+  });
 
   async function toFetchBookById() {
     try {
@@ -51,10 +53,10 @@ function EditBook() {
   }
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Series</label>
+          <label htmlFor="series">Series</label>
           <input
             required
             type="text"
@@ -65,7 +67,7 @@ function EditBook() {
           />
         </div>
         <div>
-          <label>Volume</label>
+          <label htmlFor="volume">Volume</label>
           <input
             required
             type="text"
@@ -76,7 +78,31 @@ function EditBook() {
           />
         </div>
         <div>
-          <label>Genre</label>
+          <label htmlFor="author">Author</label>
+          <input
+            required
+            type="text"
+            name="author"
+            id="author"
+            onChange={handleTextChange}
+            value={book.author}
+          />
+        </div>
+        <div>
+          <label htmlFor="price">Price</label>
+          <input
+            required
+            type="number"
+            min="1"
+            max="10"
+            name="price"
+            id="price"
+            onChange={handleTextChange}
+            value={book.price}
+          />
+        </div>
+        <div>
+          <label htmlFor="genre">Genre</label>
           <input
             required
             type="text"
@@ -87,8 +113,8 @@ function EditBook() {
           />
         </div>
         <div>
-          <label>Description</label>
-          <input
+          <label htmlFor="description">Description</label>
+          <textarea
             type="text"
             name="description"
             id="description"

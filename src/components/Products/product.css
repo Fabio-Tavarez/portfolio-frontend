@@ -1,0 +1,43 @@
+/* BookDetail.css */
+.book-details-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px; /* Adjust the gap as needed */
+}
+
+.book-image {
+  max-width: 40%;
+  padding: 10px;
+  margin-right: 20px; /* Adjust the image width as needed */
+}
+
+.book-info {
+  flex: 1; /* Allow the information to take up available space */
+}
+
+/* Style for buttons - you can customize this further if needed */
+.book-buttons {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 10px;
+  display: inline-block;
+  vertical-align: top; /* Align the buttons to the top of the container */
+  margin-top: 10px; 
+}
+
+.book-buttons button {
+  background-color: #ff0001; /* Button background color */
+  color: white; /* Button text color */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 30px;
+  margin-right: 20px;
+}
+
+.book-buttons button:hover {
+  background-color: #cc0000; /* Button background color on hover */
+}
