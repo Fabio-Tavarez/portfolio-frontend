@@ -20,4 +20,23 @@ async function getBookById(id) {
   }
 }
 
-export { getAllBooks, getBookById };
+async function updateBookById(id, updatedBook) {
+  try {
+    let result = await Axios.put(`/books/${id}`, updatedBook);
+
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
+async function createBook(book) {
+  try {
+    let result = await Axios.post(`/books`, book);
+
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
+
+export { getAllBooks, getBookById, updateBookById, createBook };
